@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Notes Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <!-- LOGO -->
+
+    <div class="logo">
+        📚 SmartNotes
+    </div>
+
+
+    <!-- NAVIGATION LINKS -->
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+
+        <a href="/notes">
+            Notes
+        </a>
+
+
+        <a href="#features">
+            Features
+        </a>
+
+
+        <a href="#important">
+            Important Questions
+        </a>
+
+
+        <!-- LOGIN -->
+
+        <a href="/login">
+            Login
+        </a>
+
+
+        <!-- REGISTER -->
+
+        <a href="/register">
+            Register
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <p class="small-title">
+            WELCOME TO SMARTNOTES
+        </p>
+
+
+        <h1>
+            Smart Notes Management System
+        </h1>
+
+
+        <p>
+            Find, manage and download your study notes
+            easily in one place.
+        </p>
+
+
+
+        <!-- SEARCH -->
+
+        <form
+            action="/notes"
+            method="GET"
+            class="search-box"
+        >
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search your notes..."
+            >
+
+
+            <button type="submit">
+                🔍 Search
+            </button>
+
+        </form>
+
+
+
+        <!-- EXPLORE BUTTON -->
+
+        <a
+            href="/notes"
+            class="btn"
+        >
+            Explore Notes
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES SECTION
+===================================================== -->
+
+<section
+    id="features"
+    class="dashboard"
+>
+
+
+    <div class="dashboard-header">
+
+        <p class="small-title">
+            SMART FEATURES
+        </p>
+
+
+        <h1>
+            Everything You Need for Study
+        </h1>
+
+
+        <p>
+            Manage your study material easily.
+        </p>
+
+    </div>
+
+
+
+    <div class="notes-grid">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                📚
+            </div>
+
+
+            <h2>
+                Subject-wise Notes
+            </h2>
+
+
+            <p>
+                Find notes according to different
+                subjects and categories.
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                📄
+            </div>
+
+
+            <h2>
+                PDF Notes
+            </h2>
+
+
+            <p>
+                Download useful study material
+                in PDF format.
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                🔍
+            </div>
+
+
+            <h2>
+                Easy Search
+            </h2>
+
+
+            <p>
+                Search your required notes quickly
+                using title or subject.
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                🏷️
+            </div>
+
+
+            <h2>
+                Categories
+            </h2>
+
+
+            <p>
+                Notes are organized into different
+                useful categories.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     IMPORTANT QUESTIONS
+===================================================== -->
+
+<section
+    id="important"
+    class="notes-page"
+>
+
+
+    <div class="notes-heading">
+
+        <p class="small-title">
+            EXAM PREPARATION
+        </p>
+
+
+        <h1>
+            ⭐ Important Questions
+        </h1>
+
+
+        <p>
+            Prepare important questions for your exams.
+        </p>
+
+    </div>
+
+
+
+    <div class="notes-grid">
+
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                📝
+            </div>
+
+
+            <h2>
+                Previous Year Questions
+            </h2>
+
+
+            <p>
+                Practice questions from previous
+                examinations.
+            </p>
+
+        </div>
+
+
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                ⭐
+            </div>
+
+
+            <h2>
+                Important Topics
+            </h2>
+
+
+            <p>
+                Focus on important topics for
+                exam preparation.
+            </p>
+
+        </div>
+
+
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                📖
+            </div>
+
+
+            <h2>
+                Unit-wise Questions
+            </h2>
+
+
+            <p>
+                Find important questions according
+                to different units.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LOGIN / REGISTER CTA
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            START YOUR STUDY JOURNEY
+        </p>
+
+
+        <h1>
+            Access SmartNotes
+        </h1>
+
+
+        <p>
+            Login to your account or create a new
+            student account.
+        </p>
+
+
+        <!-- LOGIN -->
+
+        <a
+            href="/login"
+            class="btn"
+        >
+            🔐 Login
+        </a>
+
+
+        <!-- REGISTER -->
+
+        <a
+            href="/register"
+            class="btn"
+            style="margin-left: 10px;"
+        >
+            📝 Register
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer
+    style="
+        background:#172554;
+        color:white;
+        text-align:center;
+        padding:25px;
+    "
+>
+
+    <p>
+        © 2026 SmartNotes Management System
+    </p>
+
+
+    <p style="margin-top:8px;">
+        Made for CSE Students 📚💻
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

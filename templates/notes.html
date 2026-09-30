@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Study Notes - SmartNotes</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        📚 SmartNotes
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- NOTES PAGE -->
+
+<section class="notes-page">
+
+
+    <div class="notes-heading">
+
+        <p class="small-title">
+            STUDY MATERIAL
+        </p>
+
+        <h1>
+            📚 Study Notes
+        </h1>
+
+        <p>
+            Search and download your study material.
+        </p>
+
+    </div>
+
+
+
+    <!-- SEARCH -->
+
+    <form method="GET"
+          action="/notes"
+          class="notes-search">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Search by title, subject or category..."
+        >
+
+        <button type="submit">
+            🔍 Search
+        </button>
+
+    </form>
+
+
+
+    <!-- NOTES -->
+
+    {% if notes %}
+
+    <div class="notes-grid">
+
+
+        {% for note in notes %}
+
+        <div class="note-card">
+
+
+            <div class="pdf-icon">
+                📄
+            </div>
+
+
+            <h2>
+                {{ note["title"] }}
+            </h2>
+
+
+            <div class="note-info">
+
+                <span>
+                    📚 {{ note["subject"] }}
+                </span>
+
+                <span>
+                    🏷️ {{ note["category"] }}
+                </span>
+
+            </div>
+
+
+            <p>
+                Uploaded by:
+                <strong>
+                    {{ note["uploaded_by"] }}
+                </strong>
+            </p>
+
+
+            <!-- DOWNLOAD PDF -->
+
+            <a
+                href="{{ url_for('download', note_id=note['id']) }}"
+                class="download-btn"
+            >
+                ⬇️ Download PDF
+            </a>
+
+
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+    {% else %}
+
+    <div class="no-notes">
+
+        <div>
+            📭
+        </div>
+
+        <h2>
+            No Notes Found
+        </h2>
+
+        <p>
+            No notes are available for your search.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+</section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        📚 SmartNotes Admin
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/notes">
+            All Notes
+        </a>
+
+        <a href="/admin">
+            Dashboard
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+
+    <div class="dashboard-header">
+
+        <p class="small-title">
+            ADMIN PANEL
+        </p>
+
+        <h1>
+            Welcome, {{ name }} 👨‍💼
+        </h1>
+
+        <p>
+            Manage students and study material.
+        </p>
+
+    </div>
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% for category, message in messages %}
+
+            <div class="message {{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+
+    <!-- STATISTICS -->
+
+    <div class="admin-stats">
+
+
+        <div class="stat-card">
+
+            <div>👨‍🎓</div>
+
+            <h2>
+                {{ total_students }}
+            </h2>
+
+            <p>
+                Students
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div>📚</div>
+
+            <h2>
+                {{ total_notes }}
+            </h2>
+
+            <p>
+                Total Notes
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div>📖</div>
+
+            <h2>
+                {{ total_subjects }}
+            </h2>
+
+            <p>
+                Subjects
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- UPLOAD -->
+
+    <div class="upload-card">
+
+        <h2>
+            📤 Upload New Notes
+        </h2>
+
+        <p>
+            Upload PDF study material for students.
+        </p>
+
+
+        <form
+            action="/upload-note"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+
+            <div>
+
+                <label>
+                    Notes Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Example: DBMS Unit 1"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Subject
+                </label>
+
+                <select name="subject" required>
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                    <option value="Programming">
+                        Programming
+                    </option>
+
+                    <option value="DBMS">
+                        DBMS
+                    </option>
+
+                    <option value="Computer Networks">
+                        Computer Networks
+                    </option>
+
+                    <option value="Multimedia">
+                        Multimedia
+                    </option>
+
+                    <option value="OOP">
+                        OOP
+                    </option>
+
+                    <option value="Data Structure">
+                        Data Structure
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Category
+                </label>
+
+                <select name="category" required>
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="Unit Notes">
+                        Unit Notes
+                    </option>
+
+                    <option value="Important Questions">
+                        Important Questions
+                    </option>
+
+                    <option value="Previous Year Questions">
+                        Previous Year Questions
+                    </option>
+
+                    <option value="Practical">
+                        Practical
+                    </option>
+
+                    <option value="Study Material">
+                        Study Material
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Select PDF
+                </label>
+
+                <input
+                    type="file"
+                    name="file"
+                    accept=".pdf"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="upload-button"
+            >
+                📤 Upload Notes
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- NOTES TABLE -->
+
+    <div class="student-table">
+
+        <h2>
+            📚 Uploaded Notes
+        </h2>
+
+
+        {% if notes %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Title
+                    </th>
+
+                    <th>
+                        Subject
+                    </th>
+
+                    <th>
+                        Category
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for note in notes %}
+
+                <tr>
+
+                    <td>
+                        {{ note["title"] }}
+                    </td>
+
+                    <td>
+                        {{ note["subject"] }}
+                    </td>
+
+                    <td>
+                        {{ note["category"] }}
+                    </td>
+
+                    <td>
+
+                        <!-- DOWNLOAD -->
+
+                        <a
+                            href="{{ url_for('download', note_id=note['id']) }}"
+                            class="table-download"
+                        >
+                            ⬇️ Download
+                        </a>
+
+
+                        <!-- DELETE -->
+
+                        <a
+                            href="{{ url_for('delete_note', note_id=note['id']) }}"
+                            class="delete-button"
+                            onclick="return confirm('Delete this note?')"
+                        >
+                            🗑️ Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+        <p class="no-data">
+            No notes uploaded yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- STUDENT LIST -->
+
+    <div class="student-table">
+
+        <h2>
+            👨‍🎓 Registered Students
+        </h2>
+
+
+        {% if students %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Name
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>
+                        {{ student["id"] }}
+                    </td>
+
+                    <td>
+                        {{ student["name"] }}
+                    </td>
+
+                    <td>
+                        {{ student["email"] }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p class="no-data">
+            No students registered yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+</section>
+
+
+<footer
+    style="
+        background:#172554;
+        color:white;
+        text-align:center;
+        padding:25px;
+    "
+>
+
+    © 2026 SmartNotes Management System develop by MANVI JII
+
+</footer>
+
+
+</body>
+
+</html>

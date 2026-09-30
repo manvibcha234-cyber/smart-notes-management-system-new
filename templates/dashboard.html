@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        📚 SmartNotes
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/notes">
+            Notes
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+
+    <div class="dashboard-header">
+
+        <p class="small-title">
+            STUDENT DASHBOARD
+        </p>
+
+        <h1>
+            Welcome, {{ name }} 👋
+        </h1>
+
+        <p>
+            Your complete study material is here.
+        </p>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="admin-stats">
+
+
+        <div class="stat-card">
+
+            <div>📚</div>
+
+            <h2>
+                {{ total_notes }}
+            </h2>
+
+            <p>
+                Available Notes
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div>📖</div>
+
+            <h2>
+                {{ total_subjects }}
+            </h2>
+
+            <p>
+                Subjects
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div>⭐</div>
+
+            <h2>
+                {{ important_notes }}
+            </h2>
+
+            <p>
+                Important Questions
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CARDS -->
+
+    <div class="notes-grid">
+
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                📚
+            </div>
+
+            <h2>
+                Study Notes
+            </h2>
+
+            <p>
+                Browse and download subject-wise
+                study notes.
+            </p>
+
+            <a
+                href="/notes"
+                class="dashboard-button"
+            >
+                View Notes
+            </a>
+
+        </div>
+
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                ⭐
+            </div>
+
+            <h2>
+                Important Questions
+            </h2>
+
+            <p>
+                Find important questions for
+                exam preparation.
+            </p>
+
+            <a
+                href="/notes?search=Important Questions"
+                class="dashboard-button"
+            >
+                View Questions
+            </a>
+
+        </div>
+
+
+        <div class="note-card">
+
+            <div class="pdf-icon">
+                🔍
+            </div>
+
+            <h2>
+                Search Notes
+            </h2>
+
+            <p>
+                Search notes by title, subject
+                or category.
+            </p>
+
+            <a
+                href="/notes"
+                class="dashboard-button"
+            >
+                Search
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- STUDY TIPS -->
+
+    <div class="upload-card">
+
+        <h2>
+            💡 Study Tips
+        </h2>
+
+        <p>
+            ✔ Read notes regularly.
+        </p>
+
+        <p>
+            ✔ Practice important questions.
+        </p>
+
+        <p>
+            ✔ Revise previous-year questions.
+        </p>
+
+        <p>
+            ✔ Download required PDFs before exams.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<footer
+    style="
+        background:#172554;
+        color:white;
+        text-align:center;
+        padding:25px;
+    "
+>
+
+    © 2026 SmartNotes Management System
+
+</footer>
+
+
+</body>
+
+</html>
